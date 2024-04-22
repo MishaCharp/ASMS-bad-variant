@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ASMS.Server.Helpers
@@ -14,7 +15,12 @@ namespace ASMS.Server.Helpers
             _configuration = configuration;
         }
 
-        public string GenerateJwtToken(ClaimsIdentity identity)
+        /// <summary>
+        /// Метод, генерирующий jwt-токен и refresh-токен
+        /// </summary>
+        /// <param name="identity"></param>
+        /// <returns>1.string - jwt-токен | 2.string - refresh-токен</returns>
+        public (string, string) GenerateJwtToken(ClaimsIdentity identity)
         {
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -27,12 +33,22 @@ namespace ASMS.Server.Helpers
                 Issuer = _configuration["Jwt:Issuer"],
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+
+            var refreshToken = GenerateRefreshToken();
+            var resultToken = tokenHandler.WriteToken(token);
+
+            return (resultToken, refreshToken);
         }
 
         public string GenerateRefreshToken()
         {
-            return "";
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                var tokenBytes = new byte[64];
+                rng.GetBytes(tokenBytes);
+
+                return Convert.ToBase64String(tokenBytes);
+            }
         }
     }
 }

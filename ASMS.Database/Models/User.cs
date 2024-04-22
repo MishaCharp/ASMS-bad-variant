@@ -7,6 +7,7 @@
         public DateOnly Birthday { get; set; }
         public string? RefreshToken { get; set; }
         public Role Role { get; set; }
+        public int RoleId { get; set; }
 
         public override void Update(BaseEntity entity)
         {

@@ -55,8 +55,8 @@ namespace ASMS.Database.Repositories
         {
             try
             {
-                var updatedItem = _dbSet.FirstOrDefault(item);
-                if (updatedItem != null) return false;
+                var updatedItem = _dbSet.Find(item.Id);
+                if (updatedItem == null) return false;
 
                 updatedItem.Update(item);
                 _context.SaveChanges();

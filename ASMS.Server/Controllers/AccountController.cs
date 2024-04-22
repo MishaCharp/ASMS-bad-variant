@@ -23,8 +23,8 @@ namespace ASMS.Server.Controllers
         [Route("/[controller]/[action]")]
         public LoginResponse Login(LoginRequest loginRequest)
         {
-            var user = Repositories.UserRepository.
-                GetWithInclude(x => x.Role)
+            var user = Repositories.UserRepository
+                .GetAll()
                 .FirstOrDefault(x=>x.Login == loginRequest.Login && x.Password == loginRequest.Password);
             
             if(user == null)
@@ -40,17 +40,26 @@ namespace ASMS.Server.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Login),
-                    new Claim(ClaimTypes.Role, user.Role.RoleName)
+                    new Claim(ClaimTypes.Role, user.RoleId.ToString())
                 };
                 var identity = new ClaimsIdentity(claims, "login");
 
-                var token = _jwtTokenHelper.GenerateJwtToken(identity);
+                var generatedData = _jwtTokenHelper.GenerateJwtToken(identity);
+                user.RefreshToken = generatedData.Item2;
+                if (!Repositories.UserRepository.Update(user))
+                {
+                    return new LoginResponse
+                    (
+                        isSuccess: false,
+                        responseText: "Произошла ошибка"
+                    );
+                }
 
                 return new LoginResponse
                     (
                         isSuccess: true,
                         responseText: "Авторизация успешна. Обновлен refresh-token",
-                        token: token
+                        token: generatedData.Item1
                     );
             }
         }
@@ -89,10 +98,9 @@ namespace ASMS.Server.Controllers
         [Authorize]
         [HttpGet]
         [Route("/[controller]/[action]")]
-        public IEnumerable<User> Get()
+        public void CheckAuthorized()
         {
-            return Repositories.UserRepository.
-                GetWithInclude(x => x.Role);
+            
         }
 
 
