@@ -16,8 +16,16 @@ async function checkAuth() {
             redirectToLogin();
         }
 
+        const data = await response.json();
+
+        // Получаем значения из объекта data
+        const roleId = data.roleId;
+
         if (currentPath === '/Account/Login' && response.ok) {
             window.location.href = '/'; // Перенаправляем на главную страницу, если пользователь уже авторизован и пытается зайти на страницу входа
+        }
+        if (currentPath === '/Home/Privacy' && response.ok && roleId != 1) {
+            redirectToNoAccessPage();
         }
 
     }

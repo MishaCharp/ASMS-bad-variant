@@ -123,7 +123,11 @@ namespace ASMS.Server.Controllers
                 }
 
                 // Возвращаем успешный ответ с информацией о пользователе
-                return Ok();
+
+                var roleId = jwtToken.Claims.FirstOrDefault(x => x.Type == "role")?.Value;
+                var userLogin = jwtToken.Claims.FirstOrDefault(x => x.Type == "unique_name")?.Value;
+
+                return Ok(new { roleId, userLogin });
             }
             catch
             {
