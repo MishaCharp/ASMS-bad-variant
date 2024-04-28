@@ -3,13 +3,17 @@ using ASMS.Database.Repositories;
 using ASMS.Library.Models;
 using ASMS.Server.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace ASMS.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("AllowAllOrigins")]
     public class AccountController : ControllerBase
     {
         private readonly JwtTokenHelper _jwtTokenHelper;
@@ -95,12 +99,36 @@ namespace ASMS.Server.Controllers
 
         }
 
-        [Authorize]
         [HttpGet]
         [Route("/[controller]/[action]")]
-        public void CheckAuthorized()
+        public IActionResult Check()
         {
-            
+            string token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ")[1];
+
+            if (string.IsNullOrEmpty(token))
+            {
+                return BadRequest("Токен авторизации не предоставлен");
+            }
+
+            try
+            {
+                // Декодируем и проверяем JWT-токен
+                var handler = new JwtSecurityTokenHandler();
+                var jwtToken = handler.ReadJwtToken(token);
+
+                // Проверяем, что токен не истек и имеет правильный секретный ключ
+                if (jwtToken.ValidTo < DateTime.UtcNow || jwtToken.SignatureAlgorithm != "HS256")
+                {
+                    return Unauthorized("Недействительный или истекший токен авторизации");
+                }
+
+                // Возвращаем успешный ответ с информацией о пользователе
+                return Ok();
+            }
+            catch
+            {
+                return Unauthorized("Недействительный токен авторизации");
+            }
         }
 
 

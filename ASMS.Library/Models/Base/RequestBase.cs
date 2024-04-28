@@ -10,7 +10,7 @@ namespace ASMS.Library.Models.Base
     public abstract class RequestBase
     {
         public abstract bool IsCorrectRequest { get; }
-        internal string? ErrorText { get; set; }
+        public string? ErrorText { get; set; }
         public void AddErrorText(string errorText) => ErrorText += errorText + '\n';
     }
 }

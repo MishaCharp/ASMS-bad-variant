@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Library", "ASMS.Librar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Database", "ASMS.Database\ASMS.Database.csproj", "{2D2AEC61-C7E6-4F9B-87CE-7544F74FA4AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASMS.Test", "ASMS.Test\ASMS.Test.csproj", "{A9424154-7E9B-4CC7-8977-51A6D6DCDDCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2D2AEC61-C7E6-4F9B-87CE-7544F74FA4AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D2AEC61-C7E6-4F9B-87CE-7544F74FA4AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D2AEC61-C7E6-4F9B-87CE-7544F74FA4AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9424154-7E9B-4CC7-8977-51A6D6DCDDCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9424154-7E9B-4CC7-8977-51A6D6DCDDCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9424154-7E9B-4CC7-8977-51A6D6DCDDCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9424154-7E9B-4CC7-8977-51A6D6DCDDCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,18 @@
 ﻿@page "/"
-@inject IAuthorizationService AuthorizationService
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @rendermode InteractiveServer
+
 
 @code
 {
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
 
+        if (!user.Identity.IsAuthenticated)
+        {
+            
+        }
+    }
 }
