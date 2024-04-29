@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Login Page";
     var token = TempData["Token"]?.ToString();
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
 <div class="d-flex justify-content-center align-items-center vh-100">
@@ -28,17 +29,16 @@
                 </div>
             }
             <div class="form-group mt-3">
-                <button class="form-control btn-primary" type="submit" class="btn btn-primary mb-3">Войти</button>
+                <button class="form-control btn-primary" type="submit">Войти</button>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    function onLoad(lastTry = false) {
+    function onLoad() {
         if (@string.IsNullOrEmpty(token).ToString().ToLower() == false) {
             let token = `@token`;
-            console.log(token);
             if (token) {
                 localStorage.setItem('token', token);
                 window.location.href = '/Home/Index';

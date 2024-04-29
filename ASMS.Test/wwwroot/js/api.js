@@ -15,7 +15,6 @@ async function fetchApi(endpoint, method = 'GET', data = null, headers = {}) {
 
         if (!response.ok) {
             if (response.status === 401) {
-                // Показать страницу отсутствия доступа или выполнить другие действия при отсутствии авторизации
                 redirectToNoAccessPage();
             }
         }

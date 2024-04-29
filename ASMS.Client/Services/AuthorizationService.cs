@@ -26,28 +26,28 @@ namespace ASMS.Client.Services
 
         public string Authorize(string login, string password)
         {
-            var request = new LoginRequest(login, password);
-            var json = JsonConvert.SerializeObject(request);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            string resultText = "";
-
-            var response = _httpClient.PostAsync(Options.SERVER_URL + "Account/Login", content).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseJson = response.Content.ReadAsStringAsync().Result;
-                var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseJson);
-
-                if (loginResponse.IsSuccess)
-                {
-                    _accessTokenProvider.SaveAccessToken(loginResponse.Token);
-                    _navigationManager.NavigateTo("/");
-                }
-                else resultText = loginResponse.ErrorText;
-            }
+            //var request = new LoginRequest(login, password);
+            //var json = JsonConvert.SerializeObject(request);
+            //var content = new StringContent(json, Encoding.UTF8, "application/json");
+            //string resultText = "";
+            //
+            //var response = _httpClient.PostAsync(Options.SERVER_URL + "Account/Login", content).Result;
+            //
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    var responseJson = response.Content.ReadAsStringAsync().Result;
+            //    var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseJson);
+            //
+            //    if (loginResponse.IsSuccess)
+            //    {
+            //        _accessTokenProvider.SaveAccessToken(loginResponse.Token);
+            //        _navigationManager.NavigateTo("/");
+            //    }
+            //    else resultText = loginResponse.ErrorText;
+            //}
 
             //_navigationManager.NavigateTo("/login");
-            return resultText;
+            return /*resultText*/"";
         }
     }
 }

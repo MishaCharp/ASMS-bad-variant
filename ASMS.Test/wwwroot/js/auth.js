@@ -12,6 +12,8 @@ async function checkAuth() {
         const currentPath = window.location.pathname;
         const response = await fetchApi('Account/Check');
 
+
+
         if (!response.ok) {
             redirectToLogin();
         }
@@ -21,12 +23,19 @@ async function checkAuth() {
         // Получаем значения из объекта data
         const roleId = data.roleId;
 
+        var existingRole = localStorage.getItem('role');
+        if (existingRole !== roleId) {
+            localStorage.setItem('role', roleId);
+        }
+
         if (currentPath === '/Account/Login' && response.ok) {
             window.location.href = '/'; // Перенаправляем на главную страницу, если пользователь уже авторизован и пытается зайти на страницу входа
         }
         if (currentPath === '/Home/Privacy' && response.ok && roleId != 1) {
             redirectToNoAccessPage();
         }
+
+        return data; 
 
     }
     catch
@@ -38,3 +47,5 @@ async function checkAuth() {
 
 // Вызываем функцию проверки авторизации при загрузке страницы
 window.addEventListener('load', checkAuth);
+
+export { checkAuth }
