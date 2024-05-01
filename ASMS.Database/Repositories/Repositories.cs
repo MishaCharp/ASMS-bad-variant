@@ -90,5 +90,12 @@ namespace ASMS.Database.Repositories
     {
         public static Repository<User> UserRepository = new Repository<User>();
         public static Repository<Role> RoleRepository = new Repository<Role>();
+        public static Repository<Group> GroupRepository = new Repository<Group>();
+        public static Repository<Department> DepartmentRepository = new Repository<Department>();
+        public static Repository<Lesson> LessonRepository = new Repository<Lesson>();
+        public static Repository<Mark> MarkRepository = new Repository<Mark>();
+        public static Repository<Subject> SubjectRepository = new Repository<Subject>();
+        public static Repository<StudentLessonsMarks> StudentLessonsMarksRepository = new Repository<StudentLessonsMarks>();
+        public static Repository<GroupUserMapping> GroupUserMappingRepository = new Repository<GroupUserMapping>();
     }
 }
