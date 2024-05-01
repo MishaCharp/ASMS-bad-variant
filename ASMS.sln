@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Client", "ASMS.Client\ASMS.Client.csproj", "{62E604A1-FA54-4E72-9BD0-1EB490B760E7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Server", "ASMS.Server\ASMS.Server.csproj", "{F89297DC-6836-470D-B558-33DA0DFE9995}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Library", "ASMS.Library\ASMS.Library.csproj", "{06B8964B-06CF-4920-ABDE-484614725BE6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Database", "ASMS.Database\ASMS.Database.csproj", "{2D2AEC61-C7E6-4F9B-87CE-7544F74FA4AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASMS.Test", "ASMS.Test\ASMS.Test.csproj", "{A9424154-7E9B-4CC7-8977-51A6D6DCDDCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Client", "ASMS.Test\ASMS.Client.csproj", "{A9424154-7E9B-4CC7-8977-51A6D6DCDDCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{62E604A1-FA54-4E72-9BD0-1EB490B760E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62E604A1-FA54-4E72-9BD0-1EB490B760E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62E604A1-FA54-4E72-9BD0-1EB490B760E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62E604A1-FA54-4E72-9BD0-1EB490B760E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F89297DC-6836-470D-B558-33DA0DFE9995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F89297DC-6836-470D-B558-33DA0DFE9995}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F89297DC-6836-470D-B558-33DA0DFE9995}.Release|Any CPU.ActiveCfg = Release|Any CPU

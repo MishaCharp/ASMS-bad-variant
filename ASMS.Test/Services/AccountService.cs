@@ -1,9 +1,9 @@
 ﻿using ASMS.Library.Models;
-using ASMS.Test.Services.Interfaces;
+using ASMS.Client.Services.Interfaces;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace ASMS.Test.Services
+namespace ASMS.Client.Services
 {
     public class AccountService : IAccountService
     {

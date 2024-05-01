@@ -1,6 +1,6 @@
 ﻿using ASMS.Library.Models;
 
-namespace ASMS.Test.Services.Interfaces
+namespace ASMS.Client.Services.Interfaces
 {
     public interface IAccountService
     {

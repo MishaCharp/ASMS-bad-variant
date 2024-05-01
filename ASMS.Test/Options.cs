@@ -1,4 +1,4 @@
-﻿namespace ASMS.Test
+﻿namespace ASMS.Client
 {
     public static class Options
     {

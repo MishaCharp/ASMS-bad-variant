@@ -1,10 +1,10 @@
 ﻿using ASMS.Library.Models;
-using ASMS.Test.Services.Interfaces;
+using ASMS.Client.Services.Interfaces;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.JSInterop;
 
-namespace ASMS.Test.Controllers
+namespace ASMS.Client.Controllers
 {
     public class AccountController : Controller
     {

@@ -1,5 +1,5 @@
-using ASMS.Test.Services;
-using ASMS.Test.Services.Interfaces;
+using ASMS.Client.Services;
+using ASMS.Client.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
