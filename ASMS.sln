@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Library", "ASMS.Librar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Database", "ASMS.Database\ASMS.Database.csproj", "{2D2AEC61-C7E6-4F9B-87CE-7544F74FA4AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Client", "ASMS.Test\ASMS.Client.csproj", "{A9424154-7E9B-4CC7-8977-51A6D6DCDDCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMS.Client", "ASMS.Client\ASMS.Client.csproj", "{A9424154-7E9B-4CC7-8977-51A6D6DCDDCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

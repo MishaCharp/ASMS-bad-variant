@@ -1,25 +1,22 @@
-using ASMS.Client.Components;
 using ASMS.Client.Services;
 using ASMS.Client.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<StorageService>();
-builder.Services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
-builder.Services.AddHttpClient<IAuthorizationService, AuthorizationService>();
-
-
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient<IAccountService, AccountService>();
 
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
-app.UseAntiforgery();
 
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

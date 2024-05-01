@@ -81,7 +81,7 @@ namespace ASMS.Server.Controllers
             if(findedUser != null)
                 return new RegisterResponse (false,"Пользователь с таким логином уже существует!");
 
-            var userRole = Repositories.RoleRepository.GetAll().FirstOrDefault(x => x.RoleName == "User");
+            var userRole = Repositories.RoleRepository.GetAll().FirstOrDefault(x => x.Name == "User");
             if (userRole == null)
                 return new RegisterResponse(false, "Роль пользователя не найдена! Ошибка БД!");
 
