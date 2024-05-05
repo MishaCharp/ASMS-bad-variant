@@ -1,4 +1,5 @@
-﻿using ASMS.Library.Models;
+﻿using ASMS.Library.Models.LoginModels;
+using ASMS.Library.Models.RegisterModels;
 
 namespace ASMS.Client.Services.Interfaces
 {

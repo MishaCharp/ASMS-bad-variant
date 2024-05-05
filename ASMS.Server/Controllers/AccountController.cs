@@ -1,6 +1,7 @@
 using ASMS.Database.Models;
 using ASMS.Database.Repositories;
-using ASMS.Library.Models;
+using ASMS.Library.Models.LoginModels;
+using ASMS.Library.Models.RegisterModels;
 using ASMS.Server.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASMS.Library.Models
+namespace ASMS.Library.Models.RegisterModels
 {
     public class RegisterResponse : ResponseBase
     {

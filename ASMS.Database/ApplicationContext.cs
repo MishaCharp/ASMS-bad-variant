@@ -38,7 +38,8 @@ namespace ASMS.Database
             modelBuilder.Entity<Role>().HasData(
                 new Role { Id = 1, Name = "Admin" },
                 new Role { Id = 2, Name = "Teacher" },
-                new Role { Id = 3, Name = "Student" }
+                new Role { Id = 3, Name = "Student" },
+                new Role { Id = 4, Name = "User" }
             );
 
             modelBuilder.Entity<Mark>().HasData(

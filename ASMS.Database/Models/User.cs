@@ -16,7 +16,7 @@
         /// <summary>
         /// Дата рождения пользователя
         /// </summary>
-        public DateOnly Birthday { get; set; }
+        public DateTime Birthday { get; set; }
         public string? RefreshToken { get; set; }
         /// <summary>
         /// Привязанная сущность роли, к которой привязан пользователь

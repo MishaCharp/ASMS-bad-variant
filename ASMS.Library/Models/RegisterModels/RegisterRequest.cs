@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASMS.Library.Models
+namespace ASMS.Library.Models.RegisterModels
 {
     public class RegisterRequest : RequestBase
     {
@@ -34,7 +34,7 @@ namespace ASMS.Library.Models
                     AddErrorText("Повтор пароля не может быть пустым");
                     result = false;
                 }
-                if (!DateOnly.TryParse(Birthday, out DateOnly date) ||  date.Year < 1900)
+                if (!DateOnly.TryParse(Birthday, out DateOnly date) || date.Year < 1900)
                 {
                     AddErrorText("Заполните дату рождения");
                     result = false;
@@ -49,6 +49,6 @@ namespace ASMS.Library.Models
             }
         }
         public string GetErrorText() => ErrorText ?? "";
-        public DateOnly GetBirthday() => DateOnly.Parse(Birthday);
+        public DateTime GetBirthday() => DateTime.Parse(Birthday);
     }
 }

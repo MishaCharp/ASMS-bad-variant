@@ -1,7 +1,8 @@
-﻿using ASMS.Library.Models;
-using ASMS.Client.Services.Interfaces;
+﻿using ASMS.Client.Services.Interfaces;
 using Newtonsoft.Json;
 using System.Text;
+using ASMS.Library.Models.LoginModels;
+using ASMS.Library.Models.RegisterModels;
 
 namespace ASMS.Client.Services
 {
