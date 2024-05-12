@@ -21,6 +21,11 @@ namespace ASMS.Client.Controllers
             return View(loginRequest);
         }
 
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> LoginPost(LoginRequest loginRequest)
         {

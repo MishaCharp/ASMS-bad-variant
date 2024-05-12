@@ -1,66 +1,83 @@
 using ASMS.Database.Models;
 using ASMS.Database.Repositories;
-using ASMS.Library.Models.LoginModels;
 using ASMS.Library.Models.ProfileModels;
-using ASMS.Server.Helpers;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace ASMS.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [EnableCors("AllowAllOrigins")]
     public class ProfileController : ControllerBase
     {
         public ProfileController()
         {
-            
+
         }
 
         [Authorize]
         [HttpPost]
         [Route("/[controller]/[action]")]
-        public ProfileResponse EditProfile(ProfileRequest profileRequest)
+        public ProfileEditResponse EditProfile(ProfileEditRequest profileRequest)
         {
             if (!profileRequest.IsCorrectRequest)
             {
-                return new ProfileResponse(false, errorText: profileRequest.ErrorText);
+                return new ProfileEditResponse(false, errorText: profileRequest.ErrorText);
             }
 
             var user = Repositories.UserRepository
             .GetAll()
             .FirstOrDefault(x => x.Id == profileRequest.IdUser);
 
-            if(user == null)
+            if (user == null)
             {
-                return new ProfileResponse(false, errorText: "Произошла ошибка изменения данных");
+                return new ProfileEditResponse(false, errorText: "Произошла ошибка изменения данных");
             }
 
-            UpdateUserData(profileRequest,ref user);
+            UpdateUserData(profileRequest, ref user);
 
             if (!Repositories.UserRepository.Update(user))
             {
-                return new ProfileResponse
+                return new ProfileEditResponse
                     (
                         isSuccess: false,
                         responseText: "Произошла ошибка"
                     );
             }
 
-            return new ProfileResponse
+            return new ProfileEditResponse
                     (
                         isSuccess: true,
                         responseText: "Профиль успешно обновлён"
                     );
         }
 
-        private void UpdateUserData(ProfileRequest profileRequest,ref User user)
+        [Authorize]
+        [HttpGet]
+        [Route("/[controller]/[action]")]
+        public ProfileDto GetProfile()
+        {
+            var name = HttpContext.User.FindFirstValue(ClaimTypes.Name);
+            var user = Repositories.UserRepository
+            .GetAll()
+            .FirstOrDefault(x => x.Login == name);
+            
+            if(user != null)
+            {
+                return new ProfileDto
+                {
+                    Login = user.Login,
+                    Password = user.Password,
+                    Birthday = user.Birthday,
+                };
+            }
+
+            return null;
+
+        }
+
+        private void UpdateUserData(ProfileEditRequest profileRequest, ref User user)
         {
             user.Login = profileRequest?.Login;
             user.Password = profileRequest?.Password;

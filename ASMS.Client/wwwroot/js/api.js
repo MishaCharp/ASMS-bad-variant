@@ -19,7 +19,7 @@ async function fetchApi(endpoint, method = 'GET', data = null, headers = {}) {
             }
         }
 
-        console.log(response);
+        //console.log(response);
         return response;
     } catch (error) {
         console.error('Ошибка при выполнении запроса:', error);

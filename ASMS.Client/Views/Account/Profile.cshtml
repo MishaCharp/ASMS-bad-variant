@@ -1,0 +1,54 @@
+﻿@model ProfileDto
+
+<div id="profileDiv" class="d-flex justify-content-center align-items-center h-100" style="height: 100vh">
+    <div class="container mt-3">
+        <h2>Профиль пользователя</h2>
+        <form method="post" asp-action="EditProfile" asp-controller="Profile">
+            <div class="mb-3">
+                <label for="login" class="form-label">Логин</label>
+                <input type="text" class="form-control" id="login" asp-for="Login" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" asp-for="Password" required>
+            </div>
+            <div class="mb-3">
+                <label for="birthday" class="form-label">Дата рождения</label>
+                <input type="date" class="form-control" id="birthday" asp-for="Birthday" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+<!-- Индикатор загрузки -->
+<div id="loadingSpinner" class="d-flex justify-content-center align-items-center"">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Загрузка...</span>
+    </div>
+</div>
+
+<script type="module">
+    import { fetchApi } from '/js/api.js';
+
+    async function loadProfileData() {
+        document.getElementById('profileDiv').classList.add('d-none');
+        document.getElementById('loadingSpinner').classList.add('d-block');
+
+        const response = await fetchApi('Profile/GetProfile');
+        if (response.ok) {
+            const profile = await response.json();
+            document.getElementById('login').value = profile.login;
+            document.getElementById('password').value = profile.password;
+            const birthday = new Date(profile.birthday);
+            document.getElementById('birthday').value = birthday.toISOString().split('T')[0];
+
+            document.getElementById('loadingSpinner').classList.remove('d-block');
+            document.getElementById('loadingSpinner').classList.add('d-none');
+            document.getElementById('profileDiv').classList.remove('d-none');
+        }
+    }
+
+
+    loadProfileData();
+</script>

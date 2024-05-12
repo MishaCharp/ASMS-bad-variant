@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASMS.Library.Models.ProfileModels
 {
-    public class ProfileRequest : RequestBase
+    public class ProfileEditRequest : RequestBase
     {
         public int IdUser { get; set; }
         public string Login { get; set; }

@@ -85,64 +85,13 @@
                 const privacyLi = createMenuItem('Privacy', '/Home/Privacy');
                 navbarUl.appendChild(privacyLi);
             }
+
+            const profileLi = createMenuItem('Profile', '/Account/Profile');
+            navbarUl.appendChild(profileLi);
         }
 
         fillMenu();
     </script>
-    @* <script type="module" src="~/js/auth.js"></script> *@
-    @* <script type="module">
-        import { checkAuth } from '/js/auth.js';
-        var role = localStorage.getItem('role');
-        fillMenu();
-
-        function fillMenu() {
-            role = localStorage.getItem('role');
-            if (!role) 
-            {
-                checkAuth().then(data => {
-                    role = data.roleId;
-                    console.log(data);
-                    console.log(data.roleId);
-                });
-            }
-
-            console.log('result role: '+role);
-            showMenuItemsByRole(role);
-        }
-
-        function createMenuItem(title, url) {
-            const li = document.createElement('li');
-            li.classList.add('nav-item');
-            const a = document.createElement('a');
-            a.classList.add('nav-link', 'text-dark');
-            a.href = url;
-            a.textContent = title;
-            li.appendChild(a);
-            return li;
-        }
-
-        function showMenuItemsByRole(role) {
-            const navbarUl = document.getElementById('navbarUl');
-
-            const homeLi = createMenuItem('Home', '/Home/Index');
-            navbarUl.appendChild(homeLi);
-
-            if (role == 1) {
-                const privacyLi = createMenuItem('Privacy', '/Home/Privacy');
-                navbarUl.appendChild(privacyLi);
-            }
-
-            //const loginLi = createMenuItem('Login', '/Account/Login');
-            //navbarUl.appendChild(loginLi);
-            //
-            //const privacyLi = createMenuItem('Privacy', '/Home/Privacy');
-            //navbarUl.appendChild(privacyLi);
-        }
-
-        //В зависимости от роли отображаем меню
-        
-
-    </script> *@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

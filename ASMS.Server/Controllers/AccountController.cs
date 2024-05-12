@@ -3,10 +3,7 @@ using ASMS.Database.Repositories;
 using ASMS.Library.Models.LoginModels;
 using ASMS.Library.Models.RegisterModels;
 using ASMS.Server.Helpers;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -14,7 +11,6 @@ namespace ASMS.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [EnableCors("AllowAllOrigins")]
     public class AccountController : ControllerBase
     {
         private readonly JwtTokenHelper _jwtTokenHelper;
@@ -30,9 +26,9 @@ namespace ASMS.Server.Controllers
         {
             var user = Repositories.UserRepository
                 .GetAll()
-                .FirstOrDefault(x=>x.Login == loginRequest.Login && x.Password == loginRequest.Password);
-            
-            if(user == null)
+                .FirstOrDefault(x => x.Login == loginRequest.Login && x.Password == loginRequest.Password);
+
+            if (user == null)
             {
                 return new LoginResponse
                     (
@@ -75,12 +71,12 @@ namespace ASMS.Server.Controllers
         {
             if (!registerRequest.IsCorrectRequest)
             {
-                return new RegisterResponse(false,registerRequest.GetErrorText());
+                return new RegisterResponse(false, registerRequest.GetErrorText());
             }
 
             var findedUser = Repositories.UserRepository.GetAll().FirstOrDefault(x => x.Login == registerRequest.Login);
-            if(findedUser != null)
-                return new RegisterResponse (false,"Пользователь с таким логином уже существует!");
+            if (findedUser != null)
+                return new RegisterResponse(false, "Пользователь с таким логином уже существует!");
 
             var userRole = Repositories.RoleRepository.GetAll().FirstOrDefault(x => x.Name == "User");
             if (userRole == null)
@@ -94,7 +90,7 @@ namespace ASMS.Server.Controllers
                 Role = userRole
             });
 
-            return result   
+            return result
                 ? new RegisterResponse(true, "Пользователь успешно добавлен!")
                 : new RegisterResponse(false, "Пользователь не добавлен!\nПроизошла ошибка!");
 
